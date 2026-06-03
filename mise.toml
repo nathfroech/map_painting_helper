@@ -4,10 +4,32 @@ lockfile = true
 [tools]
 opencode = "latest"
 prek = "latest"
+rust = "latest"
 
 [tasks.setup]
 description = "Prepare the project"
 run = [
-    "mise install",
-    "prek install --overwrite",
+  "mise install",
+  "prek install --overwrite",
+  "mise run build_parser",
 ]
+
+[tasks.fmt_parser]
+description = "Format parser code"
+run = "cargo fmt"
+dir = "parser"
+
+[tasks.lint_parser]
+description = "Lint parser code"
+run = "cargo clippy -- -D warnings"
+dir = "parser"
+
+[tasks.test_parser]
+description = "Run parser tests"
+run = "cargo test"
+dir = "parser"
+
+[tasks.build_parser]
+description = "Build parser"
+run = "cargo build"
+dir = "parser"

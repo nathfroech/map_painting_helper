@@ -70,3 +70,7 @@ provenance = "github-attestations"
 checksum = "sha256:8105cec75f5f60b2b1b499f9e57453dac1be835cf2e67ae141c47d6faa88b84d"
 url = "https://github.com/j178/prek/releases/download/v0.4.3/prek-x86_64-pc-windows-msvc.zip"
 provenance = "github-attestations"
+
+[[tools.rust]]
+version = "1.96.0"
+backend = "core:rust"

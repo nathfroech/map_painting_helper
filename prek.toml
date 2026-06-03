@@ -28,5 +28,5 @@ hooks = [
   { id = "detect-private-key" },
   { id = "fix-byte-order-marker" },
   # { id = "pretty-format-json", args = ["--autofix", "--indent=2", "--no-sort-keys"] },
-  { id = "no-commit-to-branch", args = ["-b", "main"]  },
+  { id = "no-commit-to-branch", args = ["-b", "main"] },
 ]

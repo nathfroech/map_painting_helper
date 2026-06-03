@@ -1,0 +1,22 @@
+[package]
+name = "parser"
+version = "0.0.1"
+edition = "2024"
+description = "Parser"
+license-file = "../LICENSE"
+readme = "../README.md"
+keywords = ["parser"]
+categories = ["clausewitz"]
+repository = "https://github.com/nathfroech/map_painting_helper"
+
+[lints.clippy]
+cargo = "deny"
+nursery = "deny"
+pedantic = "deny"
+style = "deny"
+correctness = "deny"
+suspicious = "deny"
+complexity = "deny"
+perf = "deny"
+
+[dependencies]
