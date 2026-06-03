@@ -1,0 +1,13 @@
+[settings]
+lockfile = true
+
+[tools]
+opencode = "latest"
+prek = "latest"
+
+[tasks.setup]
+description = "Prepare the project"
+run = [
+    "mise install",
+    "prek install --overwrite",
+]
