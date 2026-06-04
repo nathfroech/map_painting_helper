@@ -5,6 +5,8 @@ lockfile = true
 opencode = "latest"
 prek = "latest"
 rust = "latest"
+uv = "latest"
+python = "3.14"
 
 [tasks.setup]
 description = "Prepare the project"
@@ -12,6 +14,7 @@ run = [
   "mise install",
   "prek install --overwrite",
   "mise run build_parser",
+  "mise run sync_backend",
 ]
 
 [tasks.fmt_parser]
@@ -33,3 +36,33 @@ dir = "parser"
 description = "Build parser"
 run = "cargo build"
 dir = "parser"
+
+[tasks.sync_backend]
+description = "Lint backend code"
+run = "uv sync"
+dir = "backend"
+
+[tasks.fmt_backend]
+description = "Format backend code"
+run = "uv run ruff format"
+dir = "backend"
+
+[tasks.lint_backend]
+description = "Lint backend code"
+run = "uv run ruff check --fix"
+dir = "backend"
+
+[tasks.typecheck_backend]
+description = "Type-check backend code"
+run = "uv run ty check"
+dir = "backend"
+
+[tasks.test_backend]
+description = "Run backend tests"
+run = "uv run python -m pytest"
+dir = "backend"
+
+[tasks.dev_backend]
+description = "Run backend dev server"
+run = "uv run granian --interface wsgi app/main:app"
+dir = "backend"

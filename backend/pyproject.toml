@@ -1,0 +1,64 @@
+[project]
+name = "backend"
+version = "0.0.1"
+description = "Backend API for Paradox Interactive game data"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.115.0",
+    "granian>=2.7.5",
+]
+
+[dependency-groups]
+lint = [
+    "ruff>=0.15.15",
+    "ty>=0.0.42",
+]
+test = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.4.0",
+]
+dev = [
+    {include-group = "lint"},
+    {include-group = "test"},
+]
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # I don't like enforcing docstrings everywhere. It's not a library.
+    "D1",
+    # There is a conflicting rule D211
+    "D203",
+    # There is a conflicting rule D213
+    "D212",
+]
+fixable = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    # asserts are allowed in tests, duh
+    "S101",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.ty.rules]
+all = "error"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+asyncio_mode = "auto"
