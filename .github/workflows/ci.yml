@@ -21,6 +21,4 @@ jobs:
       - uses: jdx/mise-action@v2
         with:
           install: true
-      - run: mise run test_parser
-      - run: mise run test_backend
-      - run: mise run test_frontend
+      - run: mise run parser:test backend:test frontend:test

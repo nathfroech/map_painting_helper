@@ -1,7 +1,18 @@
+experimental_monorepo_root = true
+
 [settings]
+experimental = true
 lockfile = true
 
+[monorepo]
+config_roots = [
+    "parser",
+    "backend",
+    "frontend",
+]
+
 [tools]
+# I need all tools here: mise cannot derive tools from monorepo subdirectories (yet?)
 opencode = "latest"
 prek = "latest"
 rust = "latest"
@@ -16,107 +27,12 @@ description = "Prepare the project"
 run = [
     "mise install",
     "prek install --overwrite",
-    "mise run build_parser",
-    "mise run sync_backend",
-    "mise run sync_frontend",
+    "mise run parser:build",
+    "mise run backend:sync",
+    "mise run frontend:sync",
     "cd frontend/ && pnpm exec playwright install",
 ]
 
-[tasks.fmt_parser]
-description = "Format parser code"
-run = "cargo fmt"
-dir = "parser"
-
-[tasks.lint_parser]
-description = "Lint parser code"
-run = "cargo clippy -- -D warnings"
-dir = "parser"
-
-[tasks.test_parser]
-description = "Run parser tests"
-run = "cargo test"
-dir = "parser"
-
-[tasks.build_parser]
-description = "Build parser"
-run = "cargo build"
-dir = "parser"
-
-[tasks.sync_backend]
-description = "Lint backend code"
-run = "uv sync"
-dir = "backend"
-
-[tasks.fmt_backend]
-description = "Format backend code"
-run = "uv run ruff format"
-dir = "backend"
-
-[tasks.lint_backend]
-description = "Lint backend code"
-run = "uv run ruff check --fix"
-dir = "backend"
-
-[tasks.typecheck_backend]
-description = "Type-check backend code"
-run = "uv run ty check"
-dir = "backend"
-
-[tasks.test_backend]
-description = "Run backend tests"
-run = "uv run python -m pytest"
-dir = "backend"
-
-[tasks.dev_backend]
-description = "Run backend dev server"
-run = "uv run granian --interface wsgi app/main:app"
-dir = "backend"
-
-[tasks.sync_frontend]
-description = "Sync frontend dependencies"
-run = "pnpm install"
-dir = "frontend"
-
-[tasks.fmt_frontend]
-description = "Format frontend code"
-run = "pnpm format"
-dir = "frontend"
-
-[tasks.lint_frontend]
-description = "Lint frontend code"
-run = "pnpm lint"
-dir = "frontend"
-
-[tasks.typecheck_frontend]
-description = "Type-check frontend code"
-run = "pnpm typecheck"
-dir = "frontend"
-
-[tasks.test_frontend]
-description = "Run frontend unit tests"
-run = "pnpm test"
-dir = "frontend"
-
-[tasks.test_e2e]
-description = "Run frontend e2e tests"
-run = "pnpm test:e2e"
-dir = "frontend"
-
-[tasks.show_e2e_reports]
-description = "Show reports for e2e tests"
-run = "pnpm exec playwright show-report"
-dir = "frontend"
-
-[tasks.build_frontend]
-description = "Build frontend"
-run = "pnpm build"
-dir = "frontend"
-
-[tasks.dev_frontend]
-description = "Run frontend dev server"
-run = "pnpm dev"
-dir = "frontend"
-
-[tasks.fmt_config]
-description = "Format config files and docs (TOML, YAML, JSON, Markdown)"
+[tasks.config_fmt]
+description = "Format config files and docs"
 run = "dprint fmt"

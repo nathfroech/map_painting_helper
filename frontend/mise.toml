@@ -1,0 +1,35 @@
+[tools]
+node = "latest"
+pnpm = "latest"
+
+[tasks.sync]
+description = "Sync frontend dependencies"
+run = "pnpm install"
+
+[tasks.fmt]
+description = "Format frontend code"
+run = "pnpm format"
+
+[tasks.lint]
+description = "Lint frontend code"
+run = "pnpm lint"
+
+[tasks.typecheck]
+description = "Type-check frontend code"
+run = "pnpm typecheck"
+
+[tasks.test]
+description = "Run frontend unit tests"
+run = "pnpm vitest run"
+
+[tasks.e2e]
+description = "Run frontend e2e tests"
+run = "pnpm exec playwright test"
+
+[tasks.build]
+description = "Build frontend"
+run = "pnpm build"
+
+[tasks.dev]
+description = "Run frontend dev server"
+run = "pnpm dev"

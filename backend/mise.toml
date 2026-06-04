@@ -1,0 +1,27 @@
+[tools]
+uv = "latest"
+python = "3.14"
+
+[tasks.sync]
+description = "Sync backend dependencies"
+run = "uv sync"
+
+[tasks.fmt]
+description = "Format backend code"
+run = "uv run ruff format"
+
+[tasks.lint]
+description = "Lint backend code"
+run = "uv run ruff check --fix"
+
+[tasks.typecheck]
+description = "Type-check backend code"
+run = "uv run ty check"
+
+[tasks.test]
+description = "Run backend tests"
+run = "uv run python -m pytest"
+
+[tasks.dev]
+description = "Run backend dev server"
+run = "uv run granian --interface wsgi app/main:app"
