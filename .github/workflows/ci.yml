@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  lint:
+    name: Lint & format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: prek run --all-files
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run test_parser
+      - run: mise run test_backend
+      - run: mise run test_frontend
