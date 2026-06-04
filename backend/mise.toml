@@ -24,4 +24,4 @@ run = "uv run python -m pytest"
 
 [tasks.dev]
 description = "Run backend dev server"
-run = "uv run granian --interface wsgi app/main:app"
+run = "uv run fastapi dev"

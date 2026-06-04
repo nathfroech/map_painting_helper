@@ -22,6 +22,8 @@ test = [
 dev = [
     { include-group = "lint" },
     { include-group = "test" },
+    # The complete setup is useful for dev server
+    "fastapi[standard-no-fastapi-cloud-cli]",
 ]
 
 [tool.ruff]
