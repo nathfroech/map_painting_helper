@@ -1,6 +1,6 @@
 [[repos]]
 repo = "local"
 hooks = [
-  { id = "biome-lint", name = "biome lint", language = "system", entry = "pnpm lint", types_or = ["ts", "tsx", "javascript", "jsx"] },
-  { id = "tsc", name = "tsc", language = "system", entry = "pnpm typecheck", types = ["ts", "tsx"], pass_filenames = false },
+    { id = "biome-lint", name = "biome lint", language = "system", entry = "pnpm lint", types_or = ["ts", "tsx", "javascript", "jsx"] },
+    { id = "tsc", name = "tsc", language = "system", entry = "pnpm typecheck", types = ["ts", "tsx"], pass_filenames = false },
 ]

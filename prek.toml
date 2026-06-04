@@ -1,32 +1,32 @@
 [[repos]]
 repo = "meta"
 hooks = [
-  { id = "check-hooks-apply", always_run = true },
-  { id = "check-useless-excludes", always_run = true },
+    { id = "check-hooks-apply", always_run = true },
+    { id = "check-useless-excludes", always_run = true },
 ]
 
 [[repos]]
 repo = "builtin"
 hooks = [
-  { id = "trailing-whitespace" },
-  { id = "end-of-file-fixer" },
-  { id = "mixed-line-ending", args = ["--fix=lf"] },
-  { id = "check-merge-conflict" },
-  { id = "check-case-conflict" },
-  # { id = "check-illegal-windows-names" },
-  { id = "check-added-large-files" },
-  { id = "check-json" },
-  # { id = "check-json5" },
-  { id = "check-toml" },
-  { id = "check-yaml" },
-  # { id = "check-xml" },
-  { id = "check-vcs-permalinks" },
-  # { id = "check-symlinks" },
-  { id = "destroyed-symlinks" },
-  { id = "check-executables-have-shebangs" },
-  { id = "check-shebang-scripts-are-executable" },
-  { id = "detect-private-key" },
-  { id = "fix-byte-order-marker" },
-  { id = "pretty-format-json", args = ["--autofix", "--indent=2", "--no-sort-keys"] },
-  { id = "no-commit-to-branch", args = ["-b", "main"] },
+    { id = "trailing-whitespace" },
+    { id = "end-of-file-fixer" },
+    { id = "mixed-line-ending", args = ["--fix=lf"] },
+    { id = "check-merge-conflict" },
+    { id = "check-case-conflict" },
+    # { id = "check-illegal-windows-names" },
+    { id = "check-added-large-files" },
+    { id = "check-vcs-permalinks" },
+    # { id = "check-symlinks" },
+    { id = "destroyed-symlinks" },
+    { id = "check-executables-have-shebangs" },
+    { id = "check-shebang-scripts-are-executable" },
+    { id = "detect-private-key" },
+    { id = "fix-byte-order-marker" },
+    { id = "no-commit-to-branch", args = ["-b", "main"] },
+]
+
+[[repos]]
+repo = "local"
+hooks = [
+    { id = "dprint-fmt", name = "dprint fmt", language = "system", entry = "dprint fmt", types_or = ["json", "toml", "yaml", "markdown"] },
 ]

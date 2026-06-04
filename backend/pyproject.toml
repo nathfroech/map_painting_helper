@@ -20,8 +20,8 @@ test = [
     "pytest-asyncio>=1.4.0",
 ]
 dev = [
-    {include-group = "lint"},
-    {include-group = "test"},
+    { include-group = "lint" },
+    { include-group = "test" },
 ]
 
 [tool.ruff]
