@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableRateLimiting"
+  ],
+  "schedule": ["before 1st of month"],
+  "minimumReleaseAge": "30 days",
+  "lockFileMaintenance": { "enabled": false },
+  "separateMajorMinor": false,
+  "separateMultipleMinor": false,
+  "separateMultipleMajor": false,
+  "rangeStrategy": "bump",
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchManagers": ["cargo", "pep621", "npm", "github-actions"],
+      "groupName": "all dependencies",
+      "groupSlug": "all"
+    }
+  ]
+}
