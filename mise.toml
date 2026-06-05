@@ -15,7 +15,7 @@ config_roots = [
 # I need all tools here: mise cannot derive tools from monorepo subdirectories (yet?)
 opencode = "latest"
 prek = "latest"
-rust = "latest"
+rust = { version = "latest", components = "rustfmt,clippy" }
 uv = "latest"
 python = "3.14"
 node = "latest"
