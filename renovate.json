@@ -1,10 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":disableRateLimiting"
+    "config:recommended"
   ],
-  "schedule": ["before 1st of month"],
+  "schedule": ["* * 1 * *"],
   "minimumReleaseAge": "30 days",
   "lockFileMaintenance": { "enabled": false },
   "separateMajorMinor": false,
