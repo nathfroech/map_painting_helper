@@ -20,3 +20,7 @@ complexity = "deny"
 perf = "deny"
 
 [dependencies]
+
+[dev-dependencies]
+clippy = "0.0.302"
+rustfmt = "0.10.0"
