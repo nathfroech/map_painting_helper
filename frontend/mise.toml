@@ -1,7 +1,3 @@
-[tools]
-node = "latest"
-pnpm = "latest"
-
 [tasks.sync]
 description = "Sync frontend dependencies"
 run = "pnpm install"

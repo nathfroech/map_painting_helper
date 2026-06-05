@@ -1,7 +1,3 @@
-[tools]
-uv = "latest"
-python = "3.14"
-
 [tasks.sync]
 description = "Sync backend dependencies"
 run = "uv sync"
