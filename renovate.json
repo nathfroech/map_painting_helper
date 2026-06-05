@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "schedule": ["before 1st of month"],
+  "schedule": ["* * 1 * *"],
   "minimumReleaseAge": "30 days",
   "lockFileMaintenance": { "enabled": false },
   "separateMajorMinor": false,
