@@ -34,8 +34,7 @@ Three-package monorepo for Paradox Interactive game data tooling.
   - `backend:dev` - run FastAPI dev server
 - frontend tasks (executed in `frontend/` dir):
   - `frontend:sync` - `pnpm install`
-  - `frontend:fmt` - format code
-  - `frontend:lint` - lint code
+  - `frontend:lint` - format and lint code
   - `frontend:test` - run tests
   - `frontend:e2e` - run E2E tests (Playwright)
   - `frontend:build` - build frontend

@@ -6,10 +6,6 @@ pnpm = "latest"
 description = "Sync frontend dependencies"
 run = "pnpm install"
 
-[tasks.fmt]
-description = "Format frontend code"
-run = "pnpm format"
-
 [tasks.lint]
 description = "Lint frontend code"
 run = "pnpm lint"
