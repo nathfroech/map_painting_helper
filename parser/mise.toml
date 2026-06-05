@@ -1,0 +1,15 @@
+[tasks.fmt]
+description = "Format parser code"
+run = "cargo fmt"
+
+[tasks.lint]
+description = "Lint parser code"
+run = "cargo clippy -- -D warnings"
+
+[tasks.test]
+description = "Run parser tests"
+run = "cargo test"
+
+[tasks.build]
+description = "Build parser"
+run = "cargo build"

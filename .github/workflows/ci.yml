@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint & format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      # There are some issues with cache usage at the previous step.
+      # Sometimes it may hit some old cache.
+      # Let's force that for now instead of disabling mise caches entirely.
+      - run: rustup component add rustfmt clippy
+      - run: mise run parser:build
+      - run: mise run backend:sync
+      - run: mise run frontend:sync
+      - run: prek run --all-files
+
+  test_parser:
+    name: Parser tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run parser:build
+      - run: mise run parser:test
+
+  test_backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run backend:sync
+      - run: mise run backend:test
+
+  test_frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run frontend:sync
+      - run: mise run frontend:test

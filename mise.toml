@@ -1,0 +1,38 @@
+experimental_monorepo_root = true
+
+[settings]
+experimental = true
+lockfile = true
+
+[monorepo]
+config_roots = [
+    "parser",
+    "backend",
+    "frontend",
+]
+
+[tools]
+# I need all tools here: mise cannot derive tools from monorepo subdirectories (yet?)
+opencode = "latest"
+prek = "latest"
+rust = { version = "latest", components = "rustfmt,clippy" }
+uv = "latest"
+python = "3.14"
+node = "latest"
+pnpm = "latest"
+dprint = "latest"
+
+[tasks.setup]
+description = "Prepare the project"
+run = [
+    "mise install",
+    "prek install --overwrite",
+    "mise run parser:build",
+    "mise run backend:sync",
+    "mise run frontend:sync",
+    "cd frontend/ && pnpm exec playwright install",
+]
+
+[tasks.config_fmt]
+description = "Format config files and docs"
+run = "dprint fmt"
