@@ -13,12 +13,35 @@ jobs:
           install: true
       - run: prek run --all-files
 
-  test:
-    name: Tests
+  test_parser:
+    name: Parser tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
         with:
           install: true
-      - run: mise run parser:test backend:test frontend:test
+      - run: mise run parser:build
+      - run: mise run parser:test
+
+  test_backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run backend:sync
+      - run: mise run backend:test
+
+  test_frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+      - run: mise run frontend:sync
+      - run: mise run frontend:test
