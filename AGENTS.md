@@ -14,6 +14,11 @@ Three-package monorepo for Paradox Interactive game data tooling.
   `mise run <task>`.
 - **prek** — git hook manager. Run `prek run --all-files` to check all hooks on all files.
 
+## Branching Policy
+
+- Use `feature/`, `bugfix/`, or `chore/` prefixes for branch names.
+- Direct commits to `main` are prohibited.
+
 ## Dev Commands (usable from root or subproject dirs)
 
 `mise` tasks can be executed with `mise run <task>` or `mise <task>`.

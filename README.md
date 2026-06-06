@@ -81,6 +81,13 @@ commands (`cargo`/`uv`/`pnpm`) directly in subdirectories.
 | `mise run config_fmt`  | Format config files with dprint |
 | `prek run --all-files` | Run git hooks on all files      |
 
+## Branching Policy
+
+This project enforces a branch naming convention via git hooks:
+
+- Use `feature/`, `bugfix/`, or `chore/` prefixes for branch names (e.g., `feature/add-login`).
+- Direct commits to `main` are prohibited.
+
 ## License
 
 MIT — see [LICENSE](./LICENSE)
