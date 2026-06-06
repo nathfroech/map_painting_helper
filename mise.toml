@@ -17,7 +17,7 @@ opencode = "latest"
 prek = "latest"
 rust = { version = "latest", components = "rustfmt,clippy" }
 uv = "latest"
-python = "3.14"
+python = "3.14.4"
 node = "latest"
 pnpm = "latest"
 dprint = "latest"
