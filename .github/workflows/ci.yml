@@ -22,7 +22,8 @@ jobs:
       - run: mise run parser:build
       - run: mise run backend:sync
       - run: mise run frontend:sync
-      - run: prek run --all-files
+      # branch check is only for commit hooks
+      - run: SKIP=no-commit-to-branch prek run --all-files
 
   test_parser:
     name: Parser tests
