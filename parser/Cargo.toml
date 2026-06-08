@@ -20,3 +20,4 @@ complexity = "deny"
 perf = "deny"
 
 [dependencies]
+jomini = "0.34.1"
