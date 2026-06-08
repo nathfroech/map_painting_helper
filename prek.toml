@@ -22,7 +22,7 @@ hooks = [
     { id = "check-shebang-scripts-are-executable" },
     { id = "detect-private-key" },
     { id = "fix-byte-order-marker" },
-    { id = "no-commit-to-branch", args = ["--pattern", "^(?!feature/|bugfix/|chore/).+"] },
+    { id = "no-commit-to-branch", args = ["--pattern", "^(?!feature/|bugfix/|chore/|renovate/).+"] },
 ]
 
 [[repos]]
