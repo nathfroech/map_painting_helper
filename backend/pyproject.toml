@@ -3,9 +3,9 @@ name = "backend"
 version = "0.0.1"
 description = "Backend API for Paradox Interactive game data"
 readme = "README.md"
-requires-python = ">=3.14.4"
+requires-python = "==3.14.4"
 dependencies = [
-    "fastapi>=0.136.1",
+    "fastapi==0.136.1",
     "granian>=2.7.5",
 ]
 
