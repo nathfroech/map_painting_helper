@@ -47,3 +47,14 @@ Three-package monorepo for Paradox Interactive game data tooling.
 
 It is also possible to run corresponding commands (`cargo` / `uv` / `pnpm`) directly from the
 subproject dirs.
+
+## Parsing Logic
+
+1. Each game directory (for example, `country_tags`) may contain multiple files of the same
+   structure/data type.
+2. There will be mods, not only the base game. If a mod has a file with the same name and path as
+   the base game, it overrides the base game's file.
+3. If multiple mods override the same file, the latest mod wins.
+4. However, parser should still keep all the data - the merging should be done via UI by selecting
+   certain mods.
+5. Parse result is a JSON file with structured data.
