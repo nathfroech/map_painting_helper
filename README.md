@@ -26,15 +26,19 @@ This will install all tools, set up git hooks, and sync every subproject's depen
 
 ### Windows — MinGW Linker
 
-Rust on Windows needs a GNU linker. Install [MinGW64](https://www.mingw-w64.org/) first. Then create
+Rust on Windows needs a GNU linker. Install [MinGW64](https://www.mingw-w64.org/) and
+[Clang linker](https://www.mingw-w64.org/getting-started/msys2-llvm/) first. Then create
 `mise.local.toml` in the project root with the following content (change paths to your MinGW
 installation):
 
 ```toml
 [env]
-CARGO_BUILD_TARGET = "x86_64-pc-windows-gnu"
-CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER = "C:\\msys64\\mingw64\\bin\\gcc.exe"
-_.path = ["C:\\msys64\\mingw64\\bin"]
+CARGO_BUILD_TARGET = "x86_64-pc-windows-gnullvm"
+CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER = "C:\\msys64\\clang64\\bin\\x86_64-w64-mingw32-clang.exe"
+_.path = ["C:\\msys64\\clang64\\bin"]
+
+[tools]
+rust = "stable-x86_64-pc-windows-gnullvm"
 ```
 
 ## Common Commands

@@ -10,6 +10,10 @@ run = "cargo clippy -- -D warnings"
 description = "Run parser tests"
 run = "cargo test"
 
+[tasks.coverage]
+description = "Run test coverage"
+run = "cargo llvm-cov --fail-under-lines 80 --show-missing-lines"
+
 [tasks.build]
 description = "Build parser"
 run = "cargo build"

@@ -48,6 +48,17 @@ Three-package monorepo for Paradox Interactive game data tooling.
 It is also possible to run corresponding commands (`cargo` / `uv` / `pnpm`) directly from the
 subproject dirs.
 
+## Implementing new features
+
+- Never assume what is needed or what is better. If there are multiple ways to implement something,
+  and it is not clear from code, comments or documentation, which option to choose - ask the
+  developer to make a choice.
+
+## Testing rules
+
+- A general rule of thumb: if there is a function or method, there should be at least one test for
+  it. Classes/structs without methods usually do not require tests.
+
 ## Parsing Logic
 
 1. Each game directory (for example, `country_tags`) may contain multiple files of the same
