@@ -1,10 +1,14 @@
 use env_settings_derive::EnvSettings;
 use std::path::PathBuf;
 
-#[derive(EnvSettings, Debug)]
+#[derive(EnvSettings, Debug, Clone)]
+#[env_settings(delay)]
 pub struct EU4Settings {
     #[env_settings(variable = "EU4_GAME_PATH")]
     pub game_path: Option<PathBuf>,
+
+    #[env_settings(variable = "EU4_OUTPUT_PATH")]
+    pub output_path: Option<PathBuf>,
 }
 
 pub struct Settings {

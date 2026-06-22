@@ -57,7 +57,11 @@ subproject dirs.
 ## Testing rules
 
 - A general rule of thumb: if there is a function or method, there should be at least one test for
-  it. Classes/structs without methods usually do not require tests.
+  it. Enums or classes/structs without methods usually do not require tests.
+- Tests for a certain function/class/struct should be separated from other tests. In case of Rust
+  this means being withing their own `mod`; in case of Python - test class.
+- Do not test features that are implemented within a language or used library (`derive` in Rust,
+  parent classes in Python, etc.)
 
 ## Parsing Logic
 
