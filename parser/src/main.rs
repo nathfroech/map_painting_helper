@@ -31,32 +31,26 @@ impl App {
     ///
     /// # Errors
     /// This function will return an error in the following cases:
-    /// - The game path is not set in the settings.
     /// - Any error occurs while creating the `parsed_data` directory.
     /// - Serialization of the parsed data into JSON fails.
     /// - Writing to the output file fails.
     pub fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
-        println!("Running parser for Europa Universalis IV");
-        let Some(game_path) = self.settings.eu4_settings.as_ref().and_then(|s| s.game_path.clone())
-        else {
-            println!("EU4 game path not set");
-            return Err("EU4 game path not set".into());
-        };
-        let mut parser = eu4::parser::EU4Parser::new(game_path);
-        parser.parse_country_tags()?;
-
-        // Create parsed_data directory if it doesn't exist
-        fs::create_dir_all("parsed_data")?;
-
-        // Serialize and write parser.store to eu4.json
-        let json = serde_json::to_string_pretty(&parser.store)?;
-        let output_path = self
+        // TODO: At some point there will be a possibility to select between games - but for now EU4 runs by default
+        let eu4_settings = self
             .settings
             .eu4_settings
             .as_ref()
-            .and_then(|s| s.output_path.clone())
-            .unwrap_or_else(|| std::path::PathBuf::from("../parsed_data/eu4.json"));
-        let mut file = fs::File::create(output_path)?;
+            .ok_or("Some of the required EU4 environment variables are missing, aborting.")?;
+
+        println!("Running parser for Europa Universalis IV");
+        let mut parser = eu4::parser::EU4Parser::new(eu4_settings.game_path.clone());
+        parser.parse_country_tags()?;
+
+        if let Some(parent) = eu4_settings.output_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        let json = serde_json::to_string_pretty(&parser.store)?;
+        let mut file = fs::File::create(&eu4_settings.output_path)?;
         file.write_all(json.as_bytes())?;
 
         Ok(())
@@ -66,7 +60,6 @@ impl App {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let settings = Settings::from_env();
     let app = App::new(settings);
-
     app.run()
 }
 
@@ -77,12 +70,13 @@ mod tests {
     mod app_tests {
         use super::*;
         use crate::settings::EU4Settings;
+        use std::path::PathBuf;
 
         fn make_test_settings() -> Settings {
             Settings {
                 eu4_settings: Some(EU4Settings {
-                    game_path: Some("C:\\Games\\EU4".into()),
-                    output_path: None,
+                    game_path: "C:\\Games\\EU4".into(),
+                    output_path: "..\\parsed_data\\test_eu4.json".into(),
                 }),
             }
         }
@@ -91,7 +85,10 @@ mod tests {
         fn test_app_new() {
             let settings = make_test_settings();
             let app = App::new(settings);
-            assert!(app.settings.eu4_settings.is_some());
+            assert_eq!(
+                app.settings.eu4_settings.as_ref().unwrap().game_path,
+                PathBuf::from("C:\\Games\\EU4")
+            );
         }
 
         #[test]
@@ -102,9 +99,8 @@ mod tests {
         }
 
         #[test]
-        fn test_app_run_fails() {
-            let settings =
-                Settings { eu4_settings: Some(EU4Settings { game_path: None, output_path: None }) };
+        fn test_app_run_fails_on_missing_eu4_settings() {
+            let settings = Settings { eu4_settings: None };
             let app = App::new(settings);
             assert!(app.run().is_err());
         }
@@ -115,7 +111,13 @@ mod tests {
 
         #[test]
         fn test_main() {
+            unsafe {
+                std::env::set_var("EU4_GAME_PATH", "C:\\Games\\EU4");
+                std::env::set_var("EU4_OUTPUT_PATH", "../parsed_data/test_eu4.json");
+            };
+
             let result = main();
+
             assert!(result.is_ok());
         }
     }
