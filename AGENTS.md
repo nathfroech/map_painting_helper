@@ -48,6 +48,20 @@ Three-package monorepo for Paradox Interactive game data tooling.
 It is also possible to run corresponding commands (`cargo` / `uv` / `pnpm`) directly from the
 subproject dirs.
 
+## Architecture
+
+### Parser
+
+The parser is designed to handle multiple Paradox Interactive games and their mods.
+
+- `common/`: Contains base types and traits.
+  - `Source`: Enum representing the data source (Core game or a Mod).
+  - `Parser`: Trait providing common logic for file and directory parsing using the `jomini` crate.
+- `eu4/`: EU4-specific parsing logic.
+  - `EU4Parser`: Implements the `Parser` trait and stores data in a structured `store`.
+- `store`: A nested map (`Source` -> `DataType` -> `FileName` -> `Entries`) that preserves all data
+  from all sources, allowing for merging logic to be implemented in the UI.
+
 ## Rules
 
 ### Implementation
@@ -92,5 +106,9 @@ subproject dirs.
   situations when there is a big piece of completely unrelated changes are undesirable.
 - Try to imagine if there are any additional changes that might fit the main theme of the PR and
   could be useful in the future.
-- If there were any code changes, check if they require to be reflected in documentation or
-  `AGENTS.md`.
+- If there were any code changes, check if they require to be reflected in `README.md`,
+  documentation or `AGENTS.md`.
+- Linters, type checking and tests should not be executed during the review - there is a CI job for
+  that.
+- No code changes should be made during the review. If they are necessary, they should only be
+  described in the output.
