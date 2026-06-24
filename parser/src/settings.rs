@@ -45,6 +45,10 @@ mod tests {
 
     #[test]
     fn test_missing_settings() {
+        unsafe {
+            std::env::remove_var("EU4_GAME_PATH");
+            std::env::remove_var("EU4_OUTPUT_PATH");
+        }
         let settings = Settings::from_env();
 
         let eu4 = settings.eu4_settings;

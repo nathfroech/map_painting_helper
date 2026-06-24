@@ -72,18 +72,17 @@ mod tests {
         use crate::settings::EU4Settings;
         use std::path::PathBuf;
 
-        fn make_test_settings() -> Settings {
+        fn make_test_settings(output_path: PathBuf) -> Settings {
             Settings {
-                eu4_settings: Some(EU4Settings {
-                    game_path: "C:\\Games\\EU4".into(),
-                    output_path: "..\\parsed_data\\test_eu4.json".into(),
-                }),
+                eu4_settings: Some(EU4Settings { game_path: "C:\\Games\\EU4".into(), output_path }),
             }
         }
 
         #[test]
         fn test_app_new() {
-            let settings = make_test_settings();
+            let temp_dir = tempfile::tempdir().unwrap();
+            let output_path = temp_dir.path().join("test_eu4.json");
+            let settings = make_test_settings(output_path);
             let app = App::new(settings);
             assert_eq!(
                 app.settings.eu4_settings.as_ref().unwrap().game_path,
@@ -93,7 +92,9 @@ mod tests {
 
         #[test]
         fn test_app_run() {
-            let settings = make_test_settings();
+            let temp_dir = tempfile::tempdir().unwrap();
+            let output_path = temp_dir.path().join("test_eu4.json");
+            let settings = make_test_settings(output_path);
             let app = App::new(settings);
             assert!(app.run().is_ok());
         }
@@ -111,9 +112,11 @@ mod tests {
 
         #[test]
         fn test_main() {
+            let temp_dir = tempfile::tempdir().unwrap();
+            let output_path = temp_dir.path().join("test_eu4.json");
             unsafe {
                 std::env::set_var("EU4_GAME_PATH", "C:\\Games\\EU4");
-                std::env::set_var("EU4_OUTPUT_PATH", "../parsed_data/test_eu4.json");
+                std::env::set_var("EU4_OUTPUT_PATH", output_path);
             };
 
             let result = main();
