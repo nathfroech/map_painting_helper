@@ -83,7 +83,7 @@ subproject dirs.
 - Tests should follow the Arrange-Act-Assert pattern. Each block should be separated by an empty
   line - no explicit comments!
 
-### Review
+### Code Review
 
 - No matter if the main theme of the Pull Request is given or was figured out - pay attention to the
   balance of changes. It is fine to have a small set of unrelated changes (because they were
