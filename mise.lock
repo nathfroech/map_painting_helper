@@ -247,6 +247,13 @@ backend = "core:rust"
 [tools.rust.options]
 components = "clippy,rustfmt"
 
+[[tools.rust]]
+version = "1.96.0"
+backend = "core:rust"
+
+[tools.rust.options]
+components = "clippy,profiler_builtins,rust-mingw,rustfmt"
+
 [[tools.uv]]
 version = "0.11.18"
 backend = "aqua:astral-sh/uv"
