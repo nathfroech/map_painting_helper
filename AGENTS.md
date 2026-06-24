@@ -48,22 +48,20 @@ Three-package monorepo for Paradox Interactive game data tooling.
 It is also possible to run corresponding commands (`cargo` / `uv` / `pnpm`) directly from the
 subproject dirs.
 
-## Implementing new features
+## Rules
+
+### Implementation
 
 - Never assume what is needed or what is better. If there are multiple ways to implement something,
   and it is not clear from code, comments or documentation, which option to choose - ask the
   developer to make a choice.
+- The code should be self-explanatory and ideally have little to no comments. If there are inline
+  comments, they must answer the question "why", not "what" or "how". (Technical comments like
+  inline ignores are, of course, acceptable too.) Docstrings for classes or functions are not
+  required in general but are fine for some important parts of code. Separate documentation files
+  should be a last resort and should mostly describe global concepts.
 
-## Testing rules
-
-- A general rule of thumb: if there is a function or method, there should be at least one test for
-  it. Enums or classes/structs without methods usually do not require tests.
-- Tests for a certain function/class/struct should be separated from other tests. In case of Rust
-  this means being withing their own `mod`; in case of Python - test class.
-- Do not test features that are implemented within a language or used library (`derive` in Rust,
-  parent classes in Python, etc.)
-
-## Parsing Logic
+#### Parsing Logic
 
 1. Each game directory (for example, `country_tags`) may contain multiple files of the same
    structure/data type.
@@ -74,7 +72,18 @@ subproject dirs.
    certain mods.
 5. Parse result is a JSON file with structured data.
 
-## Review rules
+### Testing
+
+- A general rule of thumb: if there is a function or method, there should be at least one test for
+  it. Enums or classes/structs without methods usually do not require tests.
+- Tests for a certain function/class/struct should be separated from other tests. In case of Rust
+  this means being withing their own `mod`; in case of Python - test class.
+- Do not test features that are implemented within a language or used library (`derive` in Rust,
+  parent classes in Python, etc.)
+- Tests should follow the Arrange-Act-Assert pattern. Each block should be separated by an empty
+  line - no explicit comments!
+
+### Review
 
 - No matter if the main theme of the Pull Request is given or was figured out - pay attention to the
   balance of changes. It is fine to have a small set of unrelated changes (because they were
