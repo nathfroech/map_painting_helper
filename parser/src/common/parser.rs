@@ -129,7 +129,7 @@ mod tests {
 
     impl TestWindows1252Parser {
         fn new() -> Self {
-            TestWindows1252Parser
+            Self
         }
     }
 
@@ -143,7 +143,7 @@ mod tests {
 
     impl TestUtf8Parser {
         fn new() -> Self {
-            TestUtf8Parser
+            Self
         }
     }
 
