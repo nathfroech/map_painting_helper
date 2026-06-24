@@ -73,3 +73,15 @@ subproject dirs.
 4. However, parser should still keep all the data - the merging should be done via UI by selecting
    certain mods.
 5. Parse result is a JSON file with structured data.
+
+## Review rules
+
+- No matter if the main theme of the Pull Request is given or was figured out - pay attention to the
+  balance of changes. It is fine to have a small set of unrelated changes (because they were
+  forgotten in previous PRs or indirectly make the work on the current one easier). It may be fine
+  to have a big refactoring, followed by the changes in logic, if they touch the same places. But
+  situations when there is a big piece of completely unrelated changes are undesirable.
+- Try to imagine if there are any additional changes that might fit the main theme of the PR and
+  could be useful in the future.
+- If there were any code changes, check if they require to be reflected in documentation or
+  `AGENTS.md`.
