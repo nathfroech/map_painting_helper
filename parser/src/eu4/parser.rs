@@ -126,9 +126,8 @@ mod tests {
 
         parser.parse_country_tags().unwrap();
 
-        let tags = &parser.store[&Source::core()]["country_tags"]["00_countries"];
-        assert_eq!(tags.len(), 1);
-        let entries = tags[0].as_array().unwrap();
-        assert!(entries.is_empty());
+        let data = &parser.store;
+        // There is a single empty file, so we didn't really write anything
+        assert_eq!(data.len(), 0);
     }
 }
