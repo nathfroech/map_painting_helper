@@ -46,7 +46,9 @@ impl App {
         let mut parser = eu4::parser::EU4Parser::new(eu4_settings.game_path.clone());
         parser.parse_country_tags()?;
 
-        if let Some(parent) = eu4_settings.output_path.parent() {
+        if let Some(parent) =
+            eu4_settings.output_path.parent().filter(|p| !p.as_os_str().is_empty())
+        {
             fs::create_dir_all(parent)?;
         }
         let json = serde_json::to_string_pretty(&parser.store)?;
@@ -97,6 +99,17 @@ mod tests {
             let settings = make_test_settings(output_path);
             let app = App::new(settings);
             assert!(app.run().is_ok());
+        }
+
+        #[test]
+        fn test_app_run_with_output_filename_only() {
+            let settings = make_test_settings(PathBuf::from("test_eu4.json"));
+            let app = App::new(settings);
+
+            assert!(app.run().is_ok());
+
+            // Clean up the file created in the current directory
+            let _ = fs::remove_file("test_eu4.json");
         }
 
         #[test]

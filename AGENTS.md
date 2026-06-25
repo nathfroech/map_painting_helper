@@ -95,7 +95,8 @@ The parser is designed to handle multiple Paradox Interactive games and their mo
 - Do not test features that are implemented within a language or used library (`derive` in Rust,
   parent classes in Python, etc.)
 - Tests should follow the Arrange-Act-Assert pattern. Each block should be separated by an empty
-  line - no explicit comments!
+  line - no explicit comments! The optional fourth block is for cleanup after test if that's
+  necessary.
 
 ### Code Review
 
