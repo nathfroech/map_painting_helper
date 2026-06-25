@@ -15,12 +15,13 @@ config_roots = [
 # I need all tools here: mise cannot derive tools from monorepo subdirectories (yet?)
 opencode = "latest"
 prek = "latest"
-rust = { version = "latest", components = "rustfmt,clippy" }
+rust = { version = "latest", profile = "default", components = "llvm-tools" }
 uv = "latest"
 python = "3.14.4"
 node = "latest"
 pnpm = "latest"
 dprint = "latest"
+"aqua:taiki-e/cargo-llvm-cov" = "latest"
 
 [tasks.setup]
 description = "Prepare the project"
