@@ -2,7 +2,8 @@ experimental_monorepo_root = true
 
 [settings]
 experimental = true
-lockfile = true
+# Lockfiles do not work well if a tool is defined both in mise.local.toml and mise.toml
+# lockfile = true
 
 [monorepo]
 config_roots = [
