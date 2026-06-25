@@ -62,7 +62,7 @@ pub trait Parser {
     {
         let bytes = std::fs::read(path)?;
         if bytes.is_empty() {
-            return Ok(vec![T::default()]);
+            return Ok(vec![]);
         }
         let data: T = self.parse_content(&bytes)?;
         Ok(vec![data])
