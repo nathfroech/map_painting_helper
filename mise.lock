@@ -241,18 +241,12 @@ url = "https://github.com/astral-sh/python-build-standalone/releases/download/20
 provenance = "github-attestations"
 
 [[tools.rust]]
-version = "1.96.0"
+version = "stable-x86_64-pc-windows-gnullvm"
 backend = "core:rust"
 
 [tools.rust.options]
-components = "clippy,rustfmt"
-
-[[tools.rust]]
-version = "1.96.0"
-backend = "core:rust"
-
-[tools.rust.options]
-components = "clippy,profiler_builtins,rust-mingw,rustfmt"
+components = "llvm-tools"
+profile = "default"
 
 [[tools.uv]]
 version = "0.11.18"

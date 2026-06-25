@@ -38,7 +38,7 @@ CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER = "C:\\msys64\\clang64\\bin\\x86_64-w6
 _.path = ["C:\\msys64\\clang64\\bin"]
 
 [tools]
-rust = "stable-x86_64-pc-windows-gnullvm"
+rust = { version = "stable-x86_64-pc-windows-gnullvm", profile = "default", components = "rust-mingw" }
 ```
 
 ## Common Commands
