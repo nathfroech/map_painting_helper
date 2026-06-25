@@ -122,15 +122,17 @@ mod tests {
 
     mod main_tests {
         use crate::main;
+        use crate::settings::test_utils::EnvVarGuard;
 
         #[test]
         fn test_main() {
+            let _guard = EnvVarGuard::new();
+
             let temp_dir = tempfile::tempdir().unwrap();
             let output_path = temp_dir.path().join("test_eu4.json");
-            unsafe {
-                std::env::set_var("EU4_GAME_PATH", "C:\\Games\\EU4");
-                std::env::set_var("EU4_OUTPUT_PATH", output_path);
-            };
+
+            EnvVarGuard::set("EU4_GAME_PATH", "C:\\Games\\EU4");
+            EnvVarGuard::set("EU4_OUTPUT_PATH", &output_path);
 
             let result = main();
 
