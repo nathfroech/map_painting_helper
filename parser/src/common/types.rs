@@ -23,7 +23,6 @@ impl Source {
     }
 
     #[must_use]
-    #[expect(dead_code)]
     pub const fn name(&self) -> &str {
         match self {
             Self::Core => "core",

@@ -7,7 +7,7 @@ use std::path::PathBuf;
 
 pub struct EU4Parser {
     content_dir: PathBuf,
-    pub(crate) store: HashMap<Source, HashMap<String, HashMap<String, Vec<serde_json::Value>>>>,
+    pub(crate) store: HashMap<String, HashMap<String, HashMap<String, Vec<serde_json::Value>>>>,
 }
 
 impl Parser for EU4Parser {}
@@ -21,13 +21,13 @@ impl EU4Parser {
     /// Insert a data entry, keyed by its source and originating filename.
     fn insert_data(
         &mut self,
-        source: Source,
+        source: &Source,
         data_type: impl Into<String>,
         file_name: impl Into<String>,
         data: serde_json::Value,
     ) {
         self.store
-            .entry(source)
+            .entry(source.name().to_string())
             .or_default()
             .entry(data_type.into())
             .or_default()
@@ -58,7 +58,7 @@ impl EU4Parser {
                     map.into_iter().map(|(tag, path)| CountryTag { tag, path }).collect();
                 countries.sort_by(|a, b| a.tag.cmp(&b.tag));
                 self.insert_data(
-                    Source::core(),
+                    &Source::core(),
                     "country_tags",
                     stem.clone(),
                     serde_json::to_value(countries)?,
@@ -108,7 +108,7 @@ mod tests {
 
         parser.parse_country_tags().unwrap();
 
-        let tags = &parser.store[&Source::core()]["country_tags"]["00_countries"];
+        let tags = &parser.store["core"]["country_tags"]["00_countries"];
         assert_eq!(tags.len(), 1);
         let entries = tags[0].as_array().unwrap();
         assert_eq!(entries.len(), 3);
@@ -129,5 +129,26 @@ mod tests {
         let data = &parser.store;
         // There is a single empty file, so we didn't really write anything
         assert_eq!(data.len(), 0);
+    }
+
+    #[test]
+    fn test_store_serializes_with_core_and_mod_sources() {
+        let temp_dir = tempfile::tempdir().unwrap();
+        let mut parser = EU4Parser::new(temp_dir.path().to_path_buf());
+
+        parser.insert_data(&Source::core(), "country_tags", "core_file", serde_json::json!([]));
+        parser.insert_data(
+            &Source::mod_named("mod_x"),
+            "country_tags",
+            "mod_file",
+            serde_json::json!([]),
+        );
+
+        let serialized = serde_json::to_string_pretty(&parser.store);
+
+        assert!(serialized.is_ok());
+        let json = serialized.unwrap();
+        assert!(json.contains("\"core\""));
+        assert!(json.contains("\"mod_x\""));
     }
 }
