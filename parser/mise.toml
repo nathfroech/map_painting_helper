@@ -12,8 +12,12 @@ run = "cargo llvm-cov --fail-under-lines 80 --show-missing-lines"
 
 [tasks.build]
 description = "Build parser"
-run = "cargo build"
+run = "cargo build --features python"
 
 [tasks.run]
 description = "Run parser"
 run = "cargo run"
+
+[tasks.release]
+description = "Build parser in release mode"
+run = "cargo build -r  --features python"
