@@ -98,6 +98,14 @@ The parser is designed to handle multiple Paradox Interactive games and their mo
   line - no explicit comments! The optional fourth block is for cleanup after test if that's
   necessary.
 
+#### Python-specific Testing
+
+- Tests should reflect the project architecture. For example, tests for a function from
+  `app/utils.py` should be in `tests/test_utils.py`.
+- Tests for a single Python function/method/class should be combined into a single test class with
+  the name pattern `Test<CamelCaseName>`.
+- Avoid autouse fixtures.
+
 ### Code Review
 
 - No matter if the main theme of the Pull Request is given or was figured out - pay attention to the
