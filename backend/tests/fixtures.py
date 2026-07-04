@@ -9,7 +9,7 @@ from httpx import ASGITransport, AsyncClient
 def mocked_frontend_output():
     with (
         tempfile.TemporaryDirectory(prefix="test_frontend_out") as tmp_static_dir,
-        mock.patch("app.main.settings.static_dir", tmp_static_dir),
+        mock.patch("app.settings.settings.static_dir", tmp_static_dir),
     ):
         yield
 
