@@ -46,12 +46,12 @@ def parser_dll(clean_test_parser: None):
 def mocked_parser_import(clean_test_parser: None):
     orig_import = __import__
 
-    def import_mock(name: str) -> Any:  # noqa: ANN401
+    def import_mock(name: str, *args: Any, **kwargs: Any) -> Any:  # noqa: ANN401
         if name == "parser":
             mock_parser = mock.MagicMock()
             mock_parser.parse_eu4 = mock.Mock(return_value='{"test": "data"}')
             return mock_parser
-        return orig_import(name)
+        return orig_import(name, *args, **kwargs)
 
     with mock.patch("builtins.__import__", side_effect=import_mock):
         yield
