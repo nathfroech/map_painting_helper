@@ -12,6 +12,9 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@mantine/core": "^7.17",
+    "@mantine/hooks": "^7.17",
+    "@tanstack/react-query": "^5.75",
     "next": "16.2.7",
     "react": "19.2.6",
     "react-dom": "19.2.6"
@@ -19,15 +22,20 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.16",
     "@playwright/test": "^1.60.0",
+    "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "24.12.2",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
+    "@vitest/coverage-v8": "^4.1.9",
     "jsdom": "^29.1.1",
+    "msw": "^2.14.6",
+    "postcss": "^8.5.16",
+    "postcss-preset-mantine": "^1.18.0",
+    "postcss-simple-vars": "^7.0.1",
     "tailwindcss": "^4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.8"

@@ -7,7 +7,19 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./src/test/setup.ts"],
+    coverage: {
+      enabled: true,
+      include: ["src/app/**/*.{ts,tsx}"],
+      provider: "v8",
+      reportOnFailure: true,
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80,
+      },
+    },
+    setupFiles: ["./src/test_utils/vitest.setup.ts"],
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["node_modules", ".next"],
   },
