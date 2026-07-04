@@ -85,7 +85,7 @@ class TestLoadParser:
         assert (parser_dll / "parser.pyd").exists()
         assert (parser_dll / "parser.dll").exists()
 
-    def test_load_parser_success(self, mocked_parser_import: None):
+    def test_load_parser_success(self, parser_pyd: pathlib.Path, mocked_parser_import: None):
         parser = load_parser()
 
         assert hasattr(parser, "parse_eu4")
