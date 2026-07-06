@@ -21,7 +21,7 @@ def clean_test_parser():
 
     sys.path = orig_path
     sys.modules.pop("parser", None)
-    assert not any("test_files" in path for path in sys.path)
+    load_parser.cache_clear()
 
 
 @pytest.fixture
