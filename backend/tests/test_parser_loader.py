@@ -1,5 +1,6 @@
 import pathlib
 import sys
+import tempfile
 from typing import Any
 from unittest import mock
 
@@ -43,6 +44,16 @@ def parser_dll(clean_test_parser: None):
 
 
 @pytest.fixture
+def parser_no_lib(clean_test_parser: None):
+    with tempfile.TemporaryDirectory(prefix="test_empty_parser") as tmp_static_dir:
+        test_parser_dir = pathlib.Path(tmp_static_dir).resolve()
+        sys.modules.pop("parser", None)
+
+        with mock.patch(PARSER_SETTING, test_parser_dir):
+            yield test_parser_dir
+
+
+@pytest.fixture
 def mocked_parser_import(clean_test_parser: None):
     orig_import = __import__
 
@@ -70,6 +81,10 @@ class TestLoadParser:
             mock.patch(PARSER_SETTING, pathlib.Path("nonexistent_directory")),
             pytest.raises(ParserImportError, match="Parser module directory does not exist"),
         ):
+            load_parser()
+
+    def test_raises_error_on_empty_directory(self, parser_no_lib: pathlib.Path):
+        with pytest.raises(ParserImportError, match="Parser module directory is empty"):
             load_parser()
 
     def test_loads_pyd_file(self, parser_pyd: pathlib.Path):

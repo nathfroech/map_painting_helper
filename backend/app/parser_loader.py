@@ -30,6 +30,9 @@ def load_parser() -> ParserModule:
         pyd_bytes = dll_path.read_bytes()
         pyd_path.write_bytes(pyd_bytes)
         parser_dll_dir = settings.parser_module_path
+    else:
+        msg = "Parser module directory is empty"
+        raise ParserImportError(msg)
 
     if parser_dll_dir and str(parser_dll_dir) not in sys.path:
         sys.path.insert(0, str(parser_dll_dir))
