@@ -16,6 +16,7 @@ pub struct Settings {
 }
 
 impl Settings {
+    #[must_use]
     pub fn from_env() -> Self {
         let eu4_settings = EU4Settings::from_env().ok();
         if eu4_settings.is_none() {

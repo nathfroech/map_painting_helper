@@ -16,7 +16,7 @@ run = "uv run ty check"
 
 [tasks.test]
 description = "Run backend tests"
-run = "uv run python -m pytest"
+run = "uv run pytest"
 
 [tasks.dev]
 description = "Run backend dev server"
