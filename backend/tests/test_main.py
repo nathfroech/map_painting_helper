@@ -1,16 +1,27 @@
+import pathlib
+import tempfile
 from http import HTTPStatus
 from typing import Never
 from unittest import mock
 
+import pytest
 from httpx import AsyncClient
 
 from app.parser_loader import ParserImportError
 
 
+@pytest.fixture
+def eu4_game_path():
+    with tempfile.TemporaryDirectory(prefix="test_eu4_game") as tmp_dir:
+        test_game_dir = pathlib.Path(tmp_dir).resolve()
+        with mock.patch("app.settings.settings.eu4_game_path", test_game_dir):
+            yield
+
+
 class TestParseEU4Data:
     url = "/api/eu4/parse-data"
 
-    async def test_returns_503_when_parser_unavailable(self, async_client: AsyncClient) -> None:
+    async def test_returns_503_when_parser_unavailable(self, async_client: AsyncClient):
         with mock.patch(
             "app.main.load_parser",
             side_effect=ParserImportError("Parser module not available"),
@@ -21,7 +32,11 @@ class TestParseEU4Data:
         data = response.json()
         assert data["error"].startswith("Parser module not available")
 
-    async def test_returns_500_when_parser_fails(self, async_client: AsyncClient) -> None:
+    async def test_returns_500_when_parser_fails(
+        self,
+        async_client: AsyncClient,
+        eu4_game_path: None,
+    ):
         with mock.patch("app.main.load_parser", return_value=mock.MagicMock()) as patched_parser:
 
             def raise_exception(*args, **kwargs) -> Never:
@@ -35,7 +50,7 @@ class TestParseEU4Data:
             data = response.json()
             assert data["error"].startswith("Parser execution failed")
 
-    async def test_returns_error_when_game_path_not_set(self, async_client: AsyncClient) -> None:
+    async def test_returns_error_when_game_path_not_set(self, async_client: AsyncClient):
         with (
             mock.patch("app.main.load_parser", return_value=mock.MagicMock()) as patched_parser,
             mock.patch("app.settings.settings.eu4_game_path", None),
@@ -48,7 +63,7 @@ class TestParseEU4Data:
             data = response.json()
             assert data["error"].startswith("Game directory is not set")
 
-    async def test_runs_parser(self, async_client: AsyncClient) -> None:
+    async def test_runs_parser(self, async_client: AsyncClient, eu4_game_path: None):
         with mock.patch("app.main.load_parser", return_value=mock.MagicMock()) as patched_parser:
             patched_parser.return_value.parse_eu4.return_value = '{"test": "data"}'
             response = await async_client.post(self.url)

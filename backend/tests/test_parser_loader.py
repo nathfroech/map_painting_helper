@@ -45,8 +45,8 @@ def parser_dll(clean_test_parser: None):
 
 @pytest.fixture
 def parser_no_lib(clean_test_parser: None):
-    with tempfile.TemporaryDirectory(prefix="test_empty_parser") as tmp_static_dir:
-        test_parser_dir = pathlib.Path(tmp_static_dir).resolve()
+    with tempfile.TemporaryDirectory(prefix="test_empty_parser") as tmp_dir:
+        test_parser_dir = pathlib.Path(tmp_dir).resolve()
         sys.modules.pop("parser", None)
 
         with mock.patch(PARSER_SETTING, test_parser_dir):

@@ -105,6 +105,7 @@ The parser is designed to handle multiple Paradox Interactive games and their mo
 - Tests for a single Python function/method/class should be combined into a single test class with
   the name pattern `Test<CamelCaseName>`.
 - Avoid autouse fixtures.
+- Tests do not require explicit return types.
 
 #### TypeScript-specific Testing
 
