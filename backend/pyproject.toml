@@ -13,8 +13,8 @@ dependencies = [
 
 [dependency-groups]
 lint = [
-    "ruff>=0.15.15",
-    "ty>=0.0.42",
+    "ruff>=0.15.16",
+    "ty>=0.0.44",
 ]
 test = [
     "httpx>=0.28.1",
