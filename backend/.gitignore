@@ -57,3 +57,7 @@ cover/
 
 # Environments
 .venv/
+
+#### Custom
+### Project
+!tests/test_files/**/*.pyd
