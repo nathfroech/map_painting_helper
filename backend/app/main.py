@@ -20,11 +20,18 @@ async def parse_eu4_data() -> JSONResponse:
             status_code=503,
         )
 
-    try:
-        result = parser.parse_eu4(str(settings.eu4_game_path))
-        return JSONResponse(json.loads(result))
-    except Exception as e:  # noqa: BLE001
-        return JSONResponse(
-            {"error": f"Parser execution failed: {e}"},
-            status_code=500,
-        )
+    match settings.eu4_game_path:
+        case None:
+            return JSONResponse(
+                {"error": "Game directory is not set"},
+                status_code=500,
+            )
+        case game_dir:
+            try:
+                result = parser.parse_eu4(str(game_dir))
+                return JSONResponse(json.loads(result))
+            except Exception as e:  # noqa: BLE001
+                return JSONResponse(
+                    {"error": f"Parser execution failed: {e}"},
+                    status_code=500,
+                )

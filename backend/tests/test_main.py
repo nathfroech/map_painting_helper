@@ -35,6 +35,19 @@ class TestParseEU4Data:
             data = response.json()
             assert data["error"].startswith("Parser execution failed")
 
+    async def test_returns_error_when_game_path_not_set(self, async_client: AsyncClient) -> None:
+        with (
+            mock.patch("app.main.load_parser", return_value=mock.MagicMock()) as patched_parser,
+            mock.patch("app.settings.settings.eu4_game_path", None),
+        ):
+            patched_parser.return_value.parse_eu4.return_value = '{"test": "data"}'
+            response = await async_client.post(self.url)
+
+            assert response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR
+            patched_parser.return_value.parse_eu4.assert_not_called()
+            data = response.json()
+            assert data["error"].startswith("Game directory is not set")
+
     async def test_runs_parser(self, async_client: AsyncClient) -> None:
         with mock.patch("app.main.load_parser", return_value=mock.MagicMock()) as patched_parser:
             patched_parser.return_value.parse_eu4.return_value = '{"test": "data"}'
