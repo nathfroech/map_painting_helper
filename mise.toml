@@ -17,7 +17,7 @@ opencode = "latest"
 prek = "latest"
 rust = { version = "latest", profile = "default", components = "llvm-tools" }
 uv = "latest"
-python = "3.14.4"
+python = "3.14.5"
 node = "latest"
 pnpm = "latest"
 dprint = "latest"
