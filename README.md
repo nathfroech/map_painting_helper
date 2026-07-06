@@ -24,12 +24,18 @@ mise run setup
 
 This will install all tools, set up git hooks, and sync every subproject's dependencies.
 
+Then create `mise.local.toml` in project root and add the necessary paths:
+
+```toml
+[env]
+EU4_GAME_PATH = "<Full path to EU4 game directory>"
+```
+
 ### Windows — MinGW Linker
 
 Rust on Windows needs a GNU linker. Install [MinGW64](https://www.mingw-w64.org/) and
-[Clang linker](https://www.mingw-w64.org/getting-started/msys2-llvm/) first. Then create
-`mise.local.toml` in the project root with the following content (change paths to your MinGW
-installation):
+[Clang linker](https://www.mingw-w64.org/getting-started/msys2-llvm/) first. Then add the following
+content (change paths to your MinGW installation) to `mise.local.toml`:
 
 ```toml
 [env]
@@ -38,7 +44,7 @@ CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER = "C:\\msys64\\clang64\\bin\\x86_64-w6
 _.path = ["C:\\msys64\\clang64\\bin"]
 
 [tools]
-rust = { version = "stable-x86_64-pc-windows-gnullvm", profile = "default", components = "rust-mingw" }
+rust = { version = "stable-x86_64-pc-windows-gnullvm", profile = "default", components = "llvm-tools,rust-mingw" }
 ```
 
 ## Common Commands
