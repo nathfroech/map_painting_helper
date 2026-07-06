@@ -8,12 +8,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 mod tests {
     use super::*;
 
-    #[test]
-    fn test_main() {
-        // I don't want to deal with mocking settings here.
-        // So, it's just a very basic test to make sure nothing weird happens (for example, no panicking).
-        match main() {
-            Ok(()) | Err(_) => {}
+    mod main_tests {
+        use super::*;
+
+        #[test]
+        fn test_main() {
+            // I don't want to deal with mocking settings here.
+            // So, it's just a very basic test to make sure nothing weird happens (for example, no panicking).
+            match main() {
+                Ok(()) | Err(_) => {}
+            }
         }
     }
 }

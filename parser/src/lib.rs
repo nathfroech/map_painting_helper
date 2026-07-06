@@ -129,6 +129,10 @@ mod tests {
 
             assert!(app.run().is_err());
         }
+    }
+
+    mod parse_eu4_tests {
+        use super::*;
 
         #[test]
         fn test_parse_eu4_returns_valid_json() {
