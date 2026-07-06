@@ -17,6 +17,7 @@ impl Source {
     }
 
     #[must_use]
+    #[allow(unfulfilled_lint_expectations)]
     #[expect(dead_code)]
     pub fn mod_named(name: impl Into<String>) -> Self {
         Self::Mod(name.into())

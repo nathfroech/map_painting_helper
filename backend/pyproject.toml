@@ -5,8 +5,10 @@ description = "Backend API for Paradox Interactive game data"
 readme = "README.md"
 requires-python = "==3.14.5"
 dependencies = [
-    "fastapi==0.136.3",
+    "fastapi==0.139.0",
     "granian>=2.7.5",
+    "pydantic-settings>=2.14.1",
+    "python-dotenv>=1.2.2",
 ]
 
 [dependency-groups]
@@ -18,6 +20,7 @@ test = [
     "httpx>=0.28.1",
     "pytest>=9.0.3",
     "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
 ]
 dev = [
     { include-group = "lint" },
@@ -25,6 +28,9 @@ dev = [
     # The complete setup is useful for dev server
     "fastapi[standard-no-fastapi-cloud-cli]",
 ]
+
+[tool.uv]
+managed = true
 
 [tool.ruff]
 line-length = 100
@@ -40,11 +46,26 @@ ignore = [
     "D203",
     # There is a conflicting rule D213
     "D212",
+    # Makes some sense - but also annoying to follow
+    "TC001",
+    "TC002",
+    "TC003",
+    # There are no authors or links for todos
+    "TD002",
+    "TD003",
 ]
 fixable = ["ALL"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = [
+    # args and kwargs in tests would usually mean "I don't care" - so why would I care about their types?
+    "ANN002",
+    "ANN003",
+    # I don't want to add return type for every test
+    "ANN201",
+    # There may be fixtures that are needed for another fixture or test but not used directly
+    "ARG001",
+    "ARG002",
     # asserts are allowed in tests, duh
     "S101",
 ]
@@ -60,7 +81,18 @@ python-version = "3.14"
 [tool.ty.rules]
 all = "error"
 
-[tool.pytest.ini_options]
+[tool.pytest]
 minversion = "8.0"
+addopts = ["--cov", "app"]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
+skip_empty = true
+ignore_errors = true
