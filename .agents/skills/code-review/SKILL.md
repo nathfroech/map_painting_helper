@@ -3,7 +3,7 @@ name: code-review
 description: Review a code diff for issues and produce a PR description. Use when asked to review a PR, review code, review a diff, or generate a PR description/commit message.
 ---
 
-## 1. Get the diff
+## 1. Get the Diff
 
 Acquire the diff to review. Prefer `git diff main...HEAD` for PR-scoped diffs. If the user specifies
 a branch or commit range, use that instead. Read changed files in full when context is needed to
@@ -18,7 +18,8 @@ Analyze the diff for:
 
 - **Correctness** — bugs, logic errors, off-by-one, unhandled edge cases
 - **Security** — injection, secrets, unsafe operations
-- **Consistency** — naming, patterns, and conventions matching the surrounding codebase
+- **Consistency** — naming, patterns (including documentation hierarchy), and conventions matching
+  the surrounding codebase
 - **Scope** — unrelated changes mixed in; keep PRs focused
 - **Missing updates** — do README, docs, AGENTS.md, or tests need updating?
 - **Readability** — unnecessary complexity, unclear names, overly dense logic
@@ -26,11 +27,11 @@ Analyze the diff for:
 Do not run linters, type checkers, or tests. CI handles that. Never make code changes. Describe what
 should change.
 
-Reference project conventions in `docs/code-review.md` if present.
+Ensure changes adhere to conventions in `docs/code-review.md`.
 
 ## 3. Output
 
-### Review report
+### Review Report
 
 List issues and suggestions grouped by severity:
 
@@ -41,11 +42,11 @@ List issues and suggestions grouped by severity:
 Reference specific file paths and line numbers. Be concrete: say _what_ is wrong and _why_, not just
 "could be better".
 
-### PR description / squashed commit message
+### PR Description / Squashed Commit Message
 
 Write a single cohesive description covering:
 
-- **What** changed (summary of the diff's purpose)
+- **What** changed (summary of the diff purpose)
 - **Why** it changed (the motivation or problem being solved)
 - **How** it works (brief technical approach, only if non-obvious)
 

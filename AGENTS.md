@@ -1,4 +1,4 @@
-# Repository
+# Project
 
 Three-package monorepo for Paradox Interactive game data tooling.
 
