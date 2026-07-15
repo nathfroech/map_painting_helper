@@ -23,7 +23,8 @@ Three-package monorepo for Paradox Interactive game data tooling.
 
 ## Branching
 
-- Prefixes: `feature/`, `bugfix/`, or `chore/`.
+- Prefixes: `feature/`, `bugfix/`, or `chore/`. `renovate/` is also used for automated dependency
+  updates.
 - Direct commits to `main` are prohibited.
 
 ## Detailed guides

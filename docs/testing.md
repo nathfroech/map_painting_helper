@@ -23,7 +23,7 @@
 
 ### TypeScript
 
-- Tests for `app/utils.ts` -> `__tests__/test_utils.ts`.
+- Tests for `app/utils.ts(x)` -> `__tests__/utils.test.ts(x)`.
 - Component tests: include snapshot tests. Page tests: no snapshots.
 - Use `test`, not `it`.
 - Reset mocks after each test, not before.
