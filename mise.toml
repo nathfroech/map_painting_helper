@@ -21,7 +21,7 @@ uv = "0.11.18"
 python = "3.14.5"
 node = "24.16.0"
 pnpm = "11.5.1"
-dprint = "0.54.0"
+dprint = "0.55.2"
 "aqua:taiki-e/cargo-llvm-cov" = "0.8.7"
 
 [tasks.setup]
