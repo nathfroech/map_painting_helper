@@ -14,7 +14,7 @@ config_roots = [
 [tools]
 # I need all tools here: mise cannot derive tools from monorepo subdirectories (yet?)
 opencode = "1.15.13"
-prek = "0.4.3"
+prek = "0.4.12"
 # Anything except "latest" breaks lockfile. Some mise bug, I guess.
 rust = { version = "latest", profile = "default", components = "llvm-tools" }
 uv = "0.11.18"
