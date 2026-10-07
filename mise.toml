@@ -22,7 +22,7 @@ python = "3.14.5"
 node = "24.16.0"
 pnpm = "11.5.1"
 dprint = "0.54.0"
-"aqua:taiki-e/cargo-llvm-cov" = "0.8.7"
+"aqua:taiki-e/cargo-llvm-cov" = "0.9.1"
 
 [tasks.setup]
 description = "Prepare the project"
