@@ -97,36 +97,36 @@ checksum = "sha256:edaca9bd58ec8e92037dac4e877d52f6b8f430b81c18b57e264b4e2fb111c
 url = "https://nodejs.org/dist/v24.16.0/node-v24.16.0-win-x64.zip"
 
 [[tools.opencode]]
-version = "1.15.13"
+version = "2.2.1"
 backend = "aqua:anomalyco/opencode"
 
 [tools.opencode."platforms.linux-arm64"]
-checksum = "sha256:7a0e5da2427c7804314fe0f87b74b4408467f94e3b8b1a61ba25a1d71fe0b4d2"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-linux-arm64.tar.gz"
+checksum = "sha256:c354d8a2dc4152308bf286b5ec7f20b3b3cfc71f9476e64f6aa274142505b2f8"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-linux-arm64.tar.gz"
 
 [tools.opencode."platforms.linux-arm64-musl"]
-checksum = "sha256:a98c2da185a059c29a9b6764dc7da05e91a63c8c0480163d138e7d812882c9bf"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-linux-arm64-musl.tar.gz"
+checksum = "sha256:c354d8a2dc4152308bf286b5ec7f20b3b3cfc71f9476e64f6aa274142505b2f8"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-linux-arm64.tar.gz"
 
 [tools.opencode."platforms.linux-x64"]
-checksum = "sha256:51785a07c009f27c5125a5235c5a0ff78433dace07f73fbc44eb672ead4b3d79"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-linux-x64.tar.gz"
+checksum = "sha256:3179551ddf69877ca24a960b0175e94405cf3f52147f1eec705094374bef49f2"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-linux-x64.tar.gz"
 
 [tools.opencode."platforms.linux-x64-musl"]
-checksum = "sha256:61f0eed6cbe3114bd22fad53098bcf397e298b51d6e113194b30c32f19002db7"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-linux-x64-musl.tar.gz"
+checksum = "sha256:3179551ddf69877ca24a960b0175e94405cf3f52147f1eec705094374bef49f2"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-linux-x64.tar.gz"
 
 [tools.opencode."platforms.macos-arm64"]
-checksum = "sha256:be369a38d15a22e83fad34874d1bc7ddead8084e07df292b28d079287d54ab0c"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-darwin-arm64.zip"
+checksum = "sha256:9df6ca3d031565c61080c717374ba846d238ec5b1c411eebe6b1b85835998ffe"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-darwin-arm64.zip"
 
 [tools.opencode."platforms.macos-x64"]
-checksum = "sha256:e0da1f0c011daa8717479014968d7ec8ce672801a8ba4710f49471dc9fbb2c7b"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-darwin-x64.zip"
+checksum = "sha256:d1cfb2315cbca0fe20876a76f2efc63c945a002290b05ab01dadec33b67a7f98"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-darwin-x64.zip"
 
 [tools.opencode."platforms.windows-x64"]
-checksum = "sha256:186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.15.13/opencode-windows-x64.zip"
+checksum = "sha256:f763730ec903064997dbf7260a86e5130d3ce7696da5c12c69b6bc4472d0956b"
+url = "https://opencode.ai/files/bin/2.2.1/opencode-windows-x64.zip"
 
 [[tools.pnpm]]
 version = "11.5.1"
