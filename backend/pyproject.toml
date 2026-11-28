@@ -3,23 +3,23 @@ name = "backend"
 version = "0.0.1"
 description = "Backend API for Paradox Interactive game data"
 readme = "README.md"
-requires-python = "==3.14.5"
+requires-python = "==3.15.2"
 dependencies = [
-    "fastapi==0.139.0",
-    "granian==2.7.5",
-    "pydantic-settings==2.14.1",
-    "python-dotenv==1.2.2",
+    "fastapi==0.162.0",
+    "granian==2.8.7",
+    "pydantic-settings==2.16.2",
+    "python-dotenv==1.2.4",
 ]
 
 [dependency-groups]
 lint = [
-    "ruff==0.15.16",
-    "ty==0.0.44",
+    "ruff==0.17.3",
+    "ty==0.0.94",
 ]
 test = [
     "httpx==0.28.1",
-    "pytest==9.0.3",
-    "pytest-asyncio==1.4.0",
+    "pytest==9.2.0",
+    "pytest-asyncio==1.4.1",
     "pytest-cov==7.1.0",
 ]
 dev = [
